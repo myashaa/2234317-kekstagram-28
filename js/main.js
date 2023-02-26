@@ -1,4 +1,6 @@
 const PHOTOS_COUNT = 25;
+const MIN_USER_PHOTOS_COUNT = 1;
+const MAX_USER_PHOTOS_COUNT = 6;
 const MAX_COMMENTS_COUNT = 5;
 const MIN_LIKES_COUNT = 15;
 const MAX_LIKES_COUNT = 200;
@@ -22,14 +24,14 @@ const MESSAGES = [
   'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!',
 ];
 
-function createIdGenerator () {
+const createIdGenerator = () => {
   let lastGeneratedId = 0;
 
-  return function () {
+  return () => {
     lastGeneratedId += 1;
     return lastGeneratedId;
   };
-}
+};
 
 const getRandomInteger = (a, b) => {
   const lower = Math.ceil(Math.min(a, b));
@@ -43,7 +45,7 @@ const getRandomArrayElement = (elements) => elements[getRandomInteger(0, element
 const generateCommentId = createIdGenerator();
 const createComment = () => ({
   id: generateCommentId(),
-  avatar: `img/avatar-${getRandomInteger(1, 6)}.svg`,
+  avatar: `img/avatar-${getRandomInteger(MIN_USER_PHOTOS_COUNT, MAX_USER_PHOTOS_COUNT)}.svg`,
   message: getRandomArrayElement(MESSAGES),
   name: getRandomArrayElement(NAMES)
 });
