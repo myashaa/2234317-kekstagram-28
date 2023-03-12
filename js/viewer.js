@@ -7,13 +7,6 @@ const commentsList = document.querySelector('.social__comments');
 const commentTemplate = document.querySelector('.social__comment');
 const commentsFragment = document.createDocumentFragment();
 
-const onDocumentKeydown = (evt) => {
-  if (isEscapeKey(evt)) {
-    evt.preventDefault();
-    closePictureModal();
-  }
-};
-
 const setPicture = ({url, description, likes, comments}) => {
   pictureModalElement.querySelector('.big-picture__img > img').src = url;
   pictureModalElement.querySelector('.social__caption').textContent = description;
@@ -64,6 +57,13 @@ const closePictureModal = () => {
 
   document.removeEventListener('keydown', onDocumentKeydown);
 };
+
+function onDocumentKeydown (evt) {
+  if (isEscapeKey(evt)) {
+    evt.preventDefault();
+    closePictureModal();
+  }
+}
 
 export {
   openPictureModal,

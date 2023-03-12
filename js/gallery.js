@@ -16,7 +16,7 @@ createUsersPictures(pictures);
 pictureModalOpenElement.addEventListener('click', (evt) => {
   const elem = evt.target.closest('.picture');
   if (elem) {
-    const currentPicture = pictures.find(item => item.id === Number(elem.dataset.id));
+    const currentPicture = pictures.find((item) => item.id === Number(elem.dataset.id));
     openPictureModal(currentPicture);
   }
 });
