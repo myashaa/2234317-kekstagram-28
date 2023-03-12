@@ -42,7 +42,7 @@ const setComments = (comments) => {
   commentsList.appendChild(commentsFragment);
 };
 
-function openPictureModal (picture) {
+const openPictureModal = (picture) => {
   pictureModalElement.classList.remove('hidden');
   socialCommentCount.classList.add('hidden');
   commentsLoader.classList.add('hidden');
@@ -52,9 +52,9 @@ function openPictureModal (picture) {
   setComments(picture.comments);
 
   document.addEventListener('keydown', onDocumentKeydown);
-}
+};
 
-function closePictureModal () {
+const closePictureModal = () => {
   pictureModalElement.classList.add('hidden');
   socialCommentCount.classList.remove('hidden');
   commentsLoader.classList.remove('hidden');
@@ -63,7 +63,7 @@ function closePictureModal () {
   clearComments();
 
   document.removeEventListener('keydown', onDocumentKeydown);
-}
+};
 
 export {
   openPictureModal,

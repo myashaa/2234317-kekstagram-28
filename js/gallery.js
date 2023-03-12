@@ -13,22 +13,11 @@ const pictureModalCloseElement = pictureModalElement.querySelector('.big-picture
 const pictures = getPhotos(PHOTOS_COUNT);
 createUsersPictures(pictures);
 
-const getPictureId = (elem) => {
-  let pictureId = 0;
-  elem.parentNode.classList.forEach((pictureClass) => {
-    if (pictureClass.includes('picture--')) {
-      pictureId = pictureClass.slice(9);
-    }
-  });
-
-  return --pictureId;
-};
-
 pictureModalOpenElement.addEventListener('click', (evt) => {
-  const elem = evt.target;
-  if (elem.classList.contains('picture__img')) {
-    const pictureId = getPictureId(elem);
-    openPictureModal(pictures[pictureId]);
+  const elem = evt.target.closest('.picture');
+  if (elem) {
+    const currentPicture = pictures.find(item => item.id === Number(elem.dataset.id));
+    openPictureModal(currentPicture);
   }
 });
 
