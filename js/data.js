@@ -6,7 +6,7 @@ import {
 
 const MIN_USER_PHOTOS_COUNT = 1;
 const MAX_USER_PHOTOS_COUNT = 6;
-const MAX_COMMENTS_COUNT = 5;
+const MAX_COMMENTS_COUNT = 13;
 const MIN_LIKES_COUNT = 15;
 const MAX_LIKES_COUNT = 200;
 const NAMES = [
