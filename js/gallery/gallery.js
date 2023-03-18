@@ -1,3 +1,4 @@
+import {PHOTOS_COUNT} from '../setup.js';
 import {getPhotos} from './data.js';
 import {createUsersPictures} from './pictures.js';
 import {
@@ -5,7 +6,6 @@ import {
   closePictureModal
 } from './viewer.js';
 
-const PHOTOS_COUNT = 25;
 const pictureModalElement = document.querySelector('.big-picture');
 const pictureModalOpenElement = document.querySelector('.pictures');
 const pictureModalCloseElement = pictureModalElement.querySelector('.big-picture__cancel');
