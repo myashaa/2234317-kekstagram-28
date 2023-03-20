@@ -1,4 +1,3 @@
-// import '/vendor/pristine/pristine.min.js';
 import {
   MAX_HASHTAG_COUNT,
   MAX_DESCRIPTION_SYMBOLS_COUNT
