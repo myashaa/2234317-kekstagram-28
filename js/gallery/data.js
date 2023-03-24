@@ -2,7 +2,7 @@ import {
   createIdGenerator,
   getRandomInteger,
   getRandomArrayElement
-} from './utils.js';
+} from '../utils.js';
 
 const MIN_USER_PHOTOS_COUNT = 1;
 const MAX_USER_PHOTOS_COUNT = 6;

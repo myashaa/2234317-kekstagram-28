@@ -383,6 +383,7 @@ main {
   height: 100%;
 
   padding-top: 60px;
+  padding-bottom: 60px;
   overflow: auto;
 
   background-color: rgba(0, 0, 0, 0.8);
@@ -730,12 +731,12 @@ main {
   border-radius: 4px;
 }
 
-.img-upload__submit:hover,
-.img-upload__submit:focus {
+.img-upload__submit:hover:not(:disabled),
+.img-upload__submit:focus:not(:disabled) {
   background-color: rgba(255, 231, 82, 0.4);
 }
 
-.img-upload__submit:active {
+.img-upload__submit:active:not(:disabled) {
   -webkit-transform: translateY(1px);
       -ms-transform: translateY(1px);
           transform: translateY(1px);
@@ -1407,4 +1408,31 @@ main {
 
 .hidden {
   display: none;
+}
+
+.pristine-error
+{
+  display: block;
+  margin-top: -15px;
+  margin-bottom: 20px;
+  color: #ffe753;
+  font-weight: 700;
+}
+
+.has-danger input,
+.has-danger textarea {
+  border-color: #ffe753;
+}
+
+.has-success input,
+.has-success textarea {
+  border-color: black;
+}
+
+.img-upload__text {
+  margin-bottom: 0;
+}
+
+.text__description {
+  margin-bottom: 30px;
 }

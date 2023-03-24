@@ -1,6 +1,5 @@
-import { isEscapeKey } from './utils.js';
-
-const COMMENTS_COUNT = 5;
+import {COMMENTS_COUNT} from '../setup.js';
+import {isEscapeKey} from '../utils.js';
 
 const pictureModalElement = document.querySelector('.big-picture');
 const socialCommentCount = document.querySelector('.social__comment-count');
