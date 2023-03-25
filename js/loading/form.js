@@ -1,6 +1,7 @@
 import {
   MAX_HASHTAG_COUNT,
-  MAX_DESCRIPTION_SYMBOLS_COUNT
+  MAX_DESCRIPTION_SYMBOLS_COUNT,
+  HASHTAG_REGEXP
 } from '../setup.js';
 
 const pictureForm = document.querySelector('#upload-select-image');
@@ -13,7 +14,6 @@ const pictureHashtagsInput = pictureForm.querySelector('.text__hashtags');
 const pictureDescriptionInput = pictureForm.querySelector('.text__description');
 const pictureInputs = pictureForm.querySelectorAll('.img-upload__field-wrapper');
 const pictureFormSubmitBtn = pictureForm.querySelector('#upload-submit');
-const hashtagRegexp = /^#[a-zA-Zа-яА-ЯёЁ0-9]{1,19}$/;
 const mutationConfig = { attributes: true };
 const observer = new MutationObserver(onMutate);
 
@@ -21,7 +21,7 @@ let hashtagErrorMessage = '';
 
 const validateHashtag = (hashtag) => {
   hashtagErrorMessage = 'Неверный хеш-тег';
-  return hashtagRegexp.test(hashtag);
+  return HASHTAG_REGEXP.test(hashtag);
 };
 
 const validateHashtags = () => {
