@@ -2,7 +2,7 @@ import {
   MIN_SCALE_VALUE,
   MAX_SCALE_VALUE,
   SCALING_STEP_VALUE
-} from './js/setup.js';
+} from 'js/setup.js';
 
 const decreasingScaleBtnClass = 'scale__control--smaller';
 const increasingScaleBtnClass = 'scale__control--bigger';
