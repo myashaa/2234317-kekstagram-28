@@ -9,8 +9,7 @@ const imgPreview = document.querySelector('.img-upload__preview img');
 const sliderElement = document.querySelector('.effect-level');
 
 const toggleFilter = (evt) => {
-  const elem = evt.target;
-  const elemValue = elem.value;
+  const elemValue = evt.target.value;
 
   if (sliderElement.classList.contains('hidden')) {
     sliderElement.classList.remove('hidden');

@@ -1,7 +1,7 @@
 import {
   DEFAULT_FILTER,
   FILTER_PARAMS
-} from '/js/setup.js';
+} from 'js/setup.js';
 
 const sliderElement = document.querySelector('.effect-level__slider');
 const valueElement = document.querySelector('.effect-level__value');
