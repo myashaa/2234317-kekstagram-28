@@ -3,6 +3,8 @@ import {
   MAX_DESCRIPTION_SYMBOLS_COUNT,
   HASHTAG_REGEXP
 } from '../setup.js';
+import {sendData} from '../network/api.js';
+import {showErrorMessage} from '../utils.js';
 
 const pictureForm = document.querySelector('#upload-select-image');
 const pristine = new Pristine(pictureForm, {
@@ -16,8 +18,13 @@ const pictureInputs = pictureForm.querySelectorAll('.img-upload__field-wrapper')
 const pictureFormSubmitBtn = pictureForm.querySelector('#upload-submit');
 const mutationConfig = { attributes: true };
 const observer = new MutationObserver(onMutate);
+const SubmitButtonText = {
+  IDLE: 'Сохранить',
+  SENDING: 'Сохраняю...'
+};
 
 let hashtagErrorMessage = '';
+let isSubmit = false;
 
 const validateHashtag = (hashtag) => {
   hashtagErrorMessage = 'Неверный хеш-тег';
@@ -58,13 +65,32 @@ const validateDescription = () => pictureDescriptionInput.value.length <= MAX_DE
 pristine.addValidator(pictureHashtagsInput, validateHashtags, getHashtagsErrorMessage);
 pristine.addValidator(pictureDescriptionInput, validateDescription, `Длина комментария превышает ${MAX_DESCRIPTION_SYMBOLS_COUNT} символов`);
 
-const validateForm = () => {
+const blockSubmitButton = () => {
+  pictureFormSubmitBtn.textContent = SubmitButtonText.SENDING;
+  pictureFormSubmitBtn.setAttribute('disabled', '');
+};
+
+const unblockSubmitButton = () => {
+  pictureFormSubmitBtn.textContent = SubmitButtonText.IDLE;
+  pictureFormSubmitBtn.removeAttribute('disabled');
+};
+
+const validateForm = (onSuccess) => {
   pictureForm.addEventListener('submit', (evt) => {
     evt.preventDefault();
 
     const isValid = pristine.validate();
     if (isValid) {
-      pictureForm.submit();
+      blockSubmitButton();
+      isSubmit = true;
+      sendData(new FormData(evt.target))
+        .then(onSuccess)
+        .catch(
+          () => {
+            showErrorMessage();
+          }
+        )
+        .finally(unblockSubmitButton);
     }
   });
 };
@@ -83,7 +109,9 @@ function onMutate () {
   if (isHasDanger) {
     pictureFormSubmitBtn.setAttribute('disabled', '');
   } else {
-    pictureFormSubmitBtn.removeAttribute('disabled');
+    if (!isSubmit) {
+      pictureFormSubmitBtn.removeAttribute('disabled');
+    }
   }
 }
 
