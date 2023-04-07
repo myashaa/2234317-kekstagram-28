@@ -12,11 +12,10 @@ const pictureModalElement = document.querySelector('.big-picture');
 const pictureModalOpenElement = document.querySelector('.pictures');
 const pictureModalCloseElement = pictureModalElement.querySelector('.big-picture__cancel');
 
-let pictures;
 getData()
   .then((data) => {
-    pictures = data;
-    createUsersPictures(pictures);
+    createUsersPictures(data);
+    createEventListener(data);
   })
   .catch(
     (err) => {
@@ -24,13 +23,15 @@ getData()
     }
   );
 
-pictureModalOpenElement.addEventListener('click', (evt) => {
-  const elem = evt.target.closest('.picture');
-  if (elem) {
-    const currentPicture = pictures.find((item) => item.id === Number(elem.dataset.id));
-    openPictureModal(currentPicture);
-  }
-});
+function createEventListener (pictures) {
+  pictureModalOpenElement.addEventListener('click', (evt) => {
+    const elem = evt.target.closest('.picture');
+    if (elem) {
+      const currentPicture = pictures.find((item) => item.id === Number(elem.dataset.id));
+      openPictureModal(currentPicture);
+    }
+  });
+}
 
 pictureModalCloseElement.addEventListener('click', () => {
   closePictureModal();

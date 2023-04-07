@@ -6,6 +6,11 @@ import {
 import {sendData} from '../network/api.js';
 import {showErrorMessage} from '../utils.js';
 
+const SubmitButtonText = {
+  IDLE: 'Сохранить',
+  SENDING: 'Сохраняю...'
+};
+
 const pictureForm = document.querySelector('#upload-select-image');
 const pristine = new Pristine(pictureForm, {
   classTo: 'img-upload__field-wrapper',
@@ -18,10 +23,6 @@ const pictureInputs = pictureForm.querySelectorAll('.img-upload__field-wrapper')
 const pictureFormSubmitBtn = pictureForm.querySelector('#upload-submit');
 const mutationConfig = { attributes: true };
 const observer = new MutationObserver(onMutate);
-const SubmitButtonText = {
-  IDLE: 'Сохранить',
-  SENDING: 'Сохраняю...'
-};
 
 let hashtagErrorMessage = '';
 let isSubmit = false;
@@ -88,6 +89,7 @@ const validateForm = (onSuccess) => {
         .catch(
           () => {
             showErrorMessage();
+            isSubmit = false;
           }
         )
         .finally(unblockSubmitButton);

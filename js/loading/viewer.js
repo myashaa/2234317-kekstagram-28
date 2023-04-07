@@ -13,6 +13,8 @@ const pictureModalElement = document.querySelector('.img-upload__overlay');
 const pictureUploadInput = document.querySelector('#upload-file');
 const pictureHashtagsInput = document.querySelector('.text__hashtags');
 const pictureDescriptionInput = document.querySelector('.text__description');
+const mutationConfig = { childList: true };
+const observer = new MutationObserver(onMutate);
 
 const clearFieldsValue = () => {
   pictureUploadInput.value = '';
@@ -28,6 +30,7 @@ const openPictureModal = () => {
   document.body.classList.add('modal-open');
 
   document.addEventListener('keydown', onDocumentKeydown);
+  observer.observe(document.body, mutationConfig);
 };
 
 const closePictureModal = () => {
@@ -48,6 +51,24 @@ function onDocumentKeydown (evt) {
     (evt.target !== pictureHashtagsInput) && (evt.target !== pictureDescriptionInput)) {
     evt.preventDefault();
     closePictureModal();
+  }
+}
+
+function onMutate (mutations) {
+  const parentNode = mutations[0];
+
+  if (parentNode.addedNodes[0]) {
+    if ((parentNode.addedNodes[0].tagName === 'SECTION')
+      && parentNode.addedNodes[0].classList.contains('error')) {
+      document.removeEventListener('keydown', onDocumentKeydown);
+    }
+  }
+
+  if (parentNode.removedNodes[0]) {
+    if ((parentNode.removedNodes[0].tagName === 'SECTION')
+      && parentNode.removedNodes[0].classList.contains('error')) {
+      document.addEventListener('keydown', onDocumentKeydown);
+    }
   }
 }
 

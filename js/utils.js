@@ -1,4 +1,11 @@
-import {ALERT_SHOW_TIME} from './setup.js';
+import { ALERT_SHOW_TIME } from './setup.js';
+
+const successMessageTemplate = document.querySelector('#success')
+  .content
+  .querySelector('.success');
+const errorMessageTemplate = document.querySelector('#error')
+  .content
+  .querySelector('.error');
 
 const createIdGenerator = () => {
   let lastGeneratedId = 0;
@@ -42,10 +49,7 @@ const showAlert = (message) => {
 };
 
 const showSuccessMessage = () => {
-  const messageTemplate = document.querySelector('#success')
-    .content
-    .querySelector('.success');
-  const message = messageTemplate.cloneNode(true);
+  const message = successMessageTemplate.cloneNode(true);
   document.body.appendChild(message);
 
   const modalElement = document.querySelector('.success');
@@ -57,10 +61,7 @@ const showSuccessMessage = () => {
 };
 
 const showErrorMessage = () => {
-  const messageTemplate = document.querySelector('#error')
-    .content
-    .querySelector('.error');
-  const message = messageTemplate.cloneNode(true);
+  const message = errorMessageTemplate.cloneNode(true);
   document.body.appendChild(message);
 
   const modalElement = document.querySelector('.error');
