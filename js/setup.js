@@ -9,6 +9,8 @@ const SCALING_STEP_VALUE = 25;
 const DEFAULT_FILTER = 'none';
 const BASE_URL = 'https://28.javascript.pages.academy/kekstagram';
 const ALERT_SHOW_TIME = 5000;
+const RANDOM_PICTURES_COUNT = 10;
+const RERENDER_DELAY = 500;
 
 const FILTER_PARAMS = {
   'none': {
@@ -67,5 +69,7 @@ export {
   DEFAULT_FILTER,
   FILTER_PARAMS,
   BASE_URL,
-  ALERT_SHOW_TIME
+  ALERT_SHOW_TIME,
+  RANDOM_PICTURES_COUNT,
+  RERENDER_DELAY
 };

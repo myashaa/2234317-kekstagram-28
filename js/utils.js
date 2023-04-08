@@ -72,6 +72,14 @@ const showErrorMessage = () => {
   modalElement.addEventListener('click', onClick);
 };
 
+const debounce = (callback, timeoutDelay) => {
+  let timeoutId;
+  return (...rest) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
+  };
+};
+
 function onClick (evt) {
   if (evt.target.tagName === 'SECTION') {
     onBtnClick();
@@ -97,5 +105,6 @@ export {
   isEscapeKey,
   showAlert,
   showSuccessMessage,
-  showErrorMessage
+  showErrorMessage,
+  debounce
 };
