@@ -35,6 +35,7 @@ const setFilters = () => {
 
 const resetFilters = () => {
   imgPreview.classList.value = '';
+  effectBtns[0].checked = true;
   resetUiSlider();
 
   effectBtns.forEach((btn) => {

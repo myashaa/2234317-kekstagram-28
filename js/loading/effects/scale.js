@@ -46,6 +46,7 @@ const setScale = () => {
 
 const resetScale = () => {
   imgPreview.style.transform = 'scale(1)';
+  scaleValueElement.value = `${ String(MAX_SCALE_VALUE) }%`;
 
   decreasingScaleBtn.removeEventListener('click', changeScale);
   increasingScaleBtn.removeEventListener('click', changeScale);

@@ -7,6 +7,8 @@ const MIN_SCALE_VALUE = 25;
 const MAX_SCALE_VALUE = 100;
 const SCALING_STEP_VALUE = 25;
 const DEFAULT_FILTER = 'none';
+const BASE_URL = 'https://28.javascript.pages.academy/kekstagram';
+const ALERT_SHOW_TIME = 5000;
 
 const FILTER_PARAMS = {
   'none': {
@@ -63,5 +65,7 @@ export {
   MAX_SCALE_VALUE,
   SCALING_STEP_VALUE,
   DEFAULT_FILTER,
-  FILTER_PARAMS
+  FILTER_PARAMS,
+  BASE_URL,
+  ALERT_SHOW_TIME
 };
