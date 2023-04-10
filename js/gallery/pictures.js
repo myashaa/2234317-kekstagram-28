@@ -11,8 +11,6 @@ const pictureTemplate = document.querySelector('#picture')
   .content
   .querySelector('.picture');
 const picturesFragment = document.createDocumentFragment();
-const titleTemplate = document.querySelector('.pictures__title');
-const imgUploadTemplate = document.querySelector('.img-upload');
 
 const comparePictures = (firstPicture, secondPicture) => secondPicture.comments.length - firstPicture.comments.length;
 
@@ -42,11 +40,10 @@ const createUsersPictures = (pictures) => {
     picturesFragment.appendChild(picture);
   });
 
-  const title = titleTemplate.cloneNode(true);
-  const imgUpload = imgUploadTemplate.cloneNode(true);
-  picturesList.innerHTML = '';
-  picturesList.appendChild(title);
-  picturesList.appendChild(imgUpload);
+  const photosList = document.querySelectorAll('.picture');
+  photosList.forEach((photo) => {
+    photo.remove();
+  });
   picturesList.appendChild(picturesFragment);
 };
 
