@@ -34,7 +34,7 @@ const validateHashtag = (hashtag) => {
 
 const validateHashtags = () => {
   const hashtags = pictureHashtagsInput.value.trim().split(' ').filter((item) => item.trim() !== '');
-  const hashtagsArr = [];
+  const uniqueHashtags = [];
 
   if (hashtags.length > MAX_HASHTAG_COUNT) {
     hashtagErrorMessage = `Количество хеш-тегов не должно быть более ${MAX_HASHTAG_COUNT}`;
@@ -44,8 +44,8 @@ const validateHashtags = () => {
   for (let i = 0; i < hashtags.length; i++) {
     const hashtag = hashtags[i].toLowerCase();
 
-    if (!hashtagsArr.includes(hashtag)) {
-      hashtagsArr.push(hashtag);
+    if (!uniqueHashtags.includes(hashtag)) {
+      uniqueHashtags.push(hashtag);
     } else {
       hashtagErrorMessage = `Хеш-тег ${hashtag} уже используется`;
       return false;
